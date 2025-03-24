@@ -1,7 +1,8 @@
 import React,{useState} from 'react'
 
 
-const Counter = ({min, initial}) => {
+// Object destructuring on the props to retreieve the min, initial and max values
+const Counter = ({min, initial, max}) => {
 
     // const {min, initial} = props;
 
@@ -13,15 +14,22 @@ const [message, setMessage] = useState('');
 
 // Increment function that will increment the value of count by 1
 const increment = () => {
-    setCount(count + 1);
-    setMessage('');
+    if (count === max){
+        setMessage(`Number cannot be greater than ${max}`)
+    }
+    else {
+        setCount(count + 1);
+        setMessage('');
+    }
 }
+
 const decrement = () => {
     if (count === min) {
         setMessage(`Number cannot be less than ${min}`)
     }
     else {
-    setCount(count-1)
+        setCount(count-1)
+        setMessage('');
     }
 }
 
