@@ -40,7 +40,7 @@ const reset = () => {
   return (
     <div>
         {/* onClick for React needs to be camelCase onClick */}
-        <button onClick={increment}>Increment!</button>
+        <button onClick={increment} className='bg-red'>Increment!</button>
         <button onClick={decrement}>Decrement!</button>
         <button onClick={reset}>Reset</button>
         <h3>Current Count: {count}</h3>
