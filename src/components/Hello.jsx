@@ -11,7 +11,14 @@ const Hello = () => {
      <p>Welcome to my first React website</p>
      <hr />
      <h2>Counter</h2>
-     <Counter/>
+     {/* Creating a different variant of our counter with props */}
+     <Counter min={0} initial={0}/>
+     <hr />
+     <Counter min={10} initial={20}/>
+     <hr />
+     <Counter min={-5} initial={0}/>
+     <hr />
+     <Counter min={-2} initial={3}/>
     </div>
   )
 }

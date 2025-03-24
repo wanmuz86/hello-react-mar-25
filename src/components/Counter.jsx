@@ -1,12 +1,14 @@
 import React,{useState} from 'react'
 
 
-const Counter = () => {
+const Counter = ({min, initial}) => {
+
+    // const {min, initial} = props;
 
 // Create a "state"/variable called it count (getter)
 // and setCounter as setter
 // The initial value is set to 0
-const [count, setCount] = useState(0);
+const [count, setCount] = useState(initial);
 const [message, setMessage] = useState('');
 
 // Increment function that will increment the value of count by 1
@@ -15,8 +17,8 @@ const increment = () => {
     setMessage('');
 }
 const decrement = () => {
-    if (count === 0){
-        setMessage('Number cannot be less than 0')
+    if (count === min) {
+        setMessage(`Number cannot be less than ${min}`)
     }
     else {
     setCount(count-1)
