@@ -7,7 +7,10 @@ import App from './App.jsx'
 // the root div with the App component
 // This is the entry point of the React app
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // StrictMode is a tool for highlighting potential problems in an application.
+  // It might have effect on useEffect, useLayoutEffect, useReducer,
+  // <StrictMode>
     <App />
-  </StrictMode>,
+  // </StrictMode>
+  ,
 )

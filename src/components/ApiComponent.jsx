@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const ApiComponent = () => {
@@ -52,6 +52,12 @@ const ApiComponent = () => {
         }
 
     }
+
+    useEffect(()=>{
+
+        callApi() // retrieve the first recommended product to user
+        
+    },[]) //[] - empty array means that the effect will only run once
   return (
     <div>
         <h2>API Component</h2>
@@ -73,7 +79,7 @@ const ApiComponent = () => {
         disabled={loading}
         onClick={callApi}>
             {
-                loading ? 'Loading...' : 'Retrieve Data from API'
+                loading ? 'Loading...' : 'Get another product'
             }
             </button>
     </div>
