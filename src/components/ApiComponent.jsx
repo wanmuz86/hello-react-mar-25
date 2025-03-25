@@ -5,7 +5,9 @@ const ApiComponent = () => {
 
     // Keyword async here signifies that the function is an asynchronous function
 
-    const [product, setProduct] = useState(null)
+    const [product, setProduct] = useState(null) // to handle the success state
+    const [error, setError] = useState('') // To handle the error [rejected state]
+    const [loading, setLoading] = useState(false)// to handle the pending state
      
     const callApi = async () => {
         // Using then and catch
@@ -34,14 +36,19 @@ const ApiComponent = () => {
 // When using async await, we need to add async keyword on the function using it
         try {
 // success part
-        const response = await axios.get('https://dummyjson.com/products/1')
+        setError('') // to clear the error state
+        setLoading(true) // to turn on the loading state
+        const randomProduct = Math.ceil(Math.random()* 194)
+        const response = await axios.get(`https://dummyjson.com/products/${randomProduct}`)
+        setLoading(false) // to turn off the loading state
         console.log(response.data)
         // Update the product in the state
         setProduct(response.data)
         }
         catch (err){
             // error part
-            console.log(err)
+            setError(err.message)
+            setLoading(false) // to turn off the loading state 
         }
 
     }
@@ -49,7 +56,7 @@ const ApiComponent = () => {
     <div>
         <h2>API Component</h2>
         {
-            product == null ? <p>No Product retrieved</p> :
+            product == null || loading == true ? <p>No Product retrieved</p> :
             <div>
                 <h3>{product.title}</h3>
                 <img src={product.thumbnail} alt={product.title} />
@@ -58,7 +65,17 @@ const ApiComponent = () => {
 
             </div>
         }
-        <button onClick={callApi}>Retrieve Data from API</button>
+        {  
+            error && <p>{error}</p>
+        }
+      
+        <button 
+        disabled={loading}
+        onClick={callApi}>
+            {
+                loading ? 'Loading...' : 'Retrieve Data from API'
+            }
+            </button>
     </div>
   )
 }
