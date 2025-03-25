@@ -6,7 +6,8 @@ import Counter from './Counter'
 // rcc -> React class component with export
 const Hello = () => {
 
-  const [age, setAge] = useState(16);
+  const [age, setAge] = useState(16); // State, have a setter and getter
+  const scores = [70,100,80,90,60,40,60]; // Array of scores / Constant - just to retrieve it withoud updating
   
   return (
     <div>
@@ -34,6 +35,18 @@ const Hello = () => {
         age >= 18 ? <p>You are an adult</p> : <p>You are not on a legal age</p> 
       }
       <button onClick={()=> setAge(Math.ceil(Math.random() * 40))}>Generate random age</button>
+      <hr />
+      <h2>Example of List Rendering</h2>
+      <ul>
+        {
+          // Use of map to bring out the list of scores
+          // Each of the component, we need to associate a key
+          // A key needs to be unique within the component
+          //scores.map(val=> <li key={val}>{val}</li>) // If we have a unique key
+
+          scores.map((val,index)=> <li key={index}>{val}</li>) // If we don't have a unique key, use index as the key
+        }
+      </ul>
     </div>
   )
 }
