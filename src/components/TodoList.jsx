@@ -11,7 +11,11 @@ const TodoList = () => {
         // Spread operator on Array
         // Add todo at the end of the todos array
         // update on the state
-        setTodos([...todos,todo])
+
+        /// {name:"Item 1", completed:true}
+        const newTodo = {name:todo, completed:false}
+    
+        setTodos([...todos,newTodo])
 
     }
     const deleteItem = (todo) => {
@@ -20,15 +24,26 @@ const TodoList = () => {
         setTodos(filteredTodos)
 
     }
+    const completeItem = (todo) => {
+        // Go through the array , check for the todos, 
+        // if the todo is the same as the passed todo
+        // Mark /Unmark the todo as completed
+        const updateTodos = todos.map((val)=>{
+            if (val === todo){
+                val.completed = !val.completed
+            }
+        })
+        setTodos(updateTodos)
+    }
   return (
     <div>
         <h2>To Do List</h2>
-        <TodoInput handleAdd={addItem}/>
+        <TodoInput handleAdd={addItem} handleComplete={completeItem}/>
         {/* Later I will bring out the TodoItem */}
         {
             // For each todo item, we will create a TodoItem component
             todos.map((val,index)=> <TodoItem key={index} todo={val} 
-            handleDelete={deleteItem}/>)
+            handleDelete={deleteItem} handleComplete={completeItem}/>)
         }
     </div>
   )
