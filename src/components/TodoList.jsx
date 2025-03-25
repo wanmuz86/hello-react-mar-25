@@ -14,6 +14,12 @@ const TodoList = () => {
         setTodos([...todos,todo])
 
     }
+    const deleteItem = (todo) => {
+        // Retrieve new Array without the passed todo item
+        const filteredTodos = todos.filter((val)=> val !== todo)
+        setTodos(filteredTodos)
+
+    }
   return (
     <div>
         <h2>To Do List</h2>
@@ -21,7 +27,8 @@ const TodoList = () => {
         {/* Later I will bring out the TodoItem */}
         {
             // For each todo item, we will create a TodoItem component
-            todos.map((val,index)=> <TodoItem key={index} todo={val}/>)
+            todos.map((val,index)=> <TodoItem key={index} todo={val} 
+            handleDelete={deleteItem}/>)
         }
     </div>
   )
