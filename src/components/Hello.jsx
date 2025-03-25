@@ -1,5 +1,7 @@
 import React,{useState} from 'react'
 import Counter from './Counter'
+import ChildComponent from './ChildComponent';
+
 // Shortcut for the extension:
 //rafce - > react arrow function component with export
 // rfce -> react function component with export
@@ -12,6 +14,12 @@ const Hello = () => {
   const [name, setName] = useState('') // State where the value from the form will be stored
   const [profession, setProfession] = useState('') // State where the value from the form will be stored
   const [message, setMessage] = useState('') // State where the message will be stored
+  const [parentMessage, setParentMessage] = useState('') // State where the message from the child will be stored
+  
+  const retrieveData = (data) => {
+    setParentMessage(data);
+  }
+
   return (
     <div>
     <h1>Hello World</h1>
@@ -69,6 +77,18 @@ const Hello = () => {
       />
       {message}
       <button onClick={()=> setMessage(`User entered ${name} and ${profession}`)}>Get the name & Profession</button>
+<hr/>
+<h2>Lifting Up state demo</h2>
+
+{/* The parent will pass a prop, handleClick which will execute retrieveData function  */}
+
+<ChildComponent handleClick={retrieveData}/>
+{
+  // COnditional Rendering
+  // ? : (if else)
+  // && -> If the value exists, show the message <p>Data passed from child: {parentMessage}</p>
+  parentMessage && <p>Data passed from child: {parentMessage}</p>
+}
 
     </div>
   )
