@@ -27,18 +27,16 @@ const TodoList = () => {
     const completeItem = (todo) => {
         // Go through the array , check for the todos, 
         // if the todo is the same as the passed todo
-        // Mark /Unmark the todo as completed
-        const updateTodos = todos.map((val)=>{
-            if (val === todo){
-                val.completed = !val.completed
-            }
-        })
-        setTodos(updateTodos)
+        // Mark /Unmark the todo as completed using spread operator on object
+        const updatedTodos = todos.map((val) =>
+        val === todo ? { ...val, completed: !val.completed } : val
+        );
+        setTodos(updatedTodos)
     }
   return (
     <div>
         <h2>To Do List</h2>
-        <TodoInput handleAdd={addItem} handleComplete={completeItem}/>
+        <TodoInput handleAdd={addItem}/>
         {/* Later I will bring out the TodoItem */}
         {
             // For each todo item, we will create a TodoItem component

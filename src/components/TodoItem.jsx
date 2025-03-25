@@ -5,7 +5,7 @@ const TodoItem = ({todo, handleDelete, handleComplete}) => {
   return (
     <div>
         <p style={{textDecoration: todo.completed ? 'line-through' : 'none'}}>{todo.name}
-        <button onClick={handleComplete(todo)}>
+        <button onClick={()=>handleComplete(todo)}>
             {
             todo.completed ? 'Mark as Incomplete' : 'Mark as Complete'
             }
