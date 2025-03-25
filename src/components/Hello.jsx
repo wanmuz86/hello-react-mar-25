@@ -9,6 +9,9 @@ const Hello = () => {
   const [age, setAge] = useState(16); // State, have a setter and getter
   const scores = [70,100,80,90,60,40,60]; // Array of scores / Constant - just to retrieve it withoud updating
   
+  const [name, setName] = useState('') // State where the value from the form will be stored
+  const [profession, setProfession] = useState('') // State where the value from the form will be stored
+  const [message, setMessage] = useState('') // State where the message will be stored
   return (
     <div>
     <h1>Hello World</h1>
@@ -47,6 +50,26 @@ const Hello = () => {
           scores.map((val,index)=> <li key={index}>{val}</li>) // If we don't have a unique key, use index as the key
         }
       </ul>
+      <hr />
+      <h2>Demo to retrieve data from input</h2>
+      <input type="text" 
+      value={name}
+      placeholder='Enter your name'
+      onChange={
+        // Whenever there is a change on the input, we will update the state "name"
+        (e)=> setName(e.target.value)}
+      />
+      <input type="text"
+      value={profession}
+      placeholder='Enter your profession'
+      onChange={
+        // Whenever there is a change on the inpute, the state "profession" will be updated
+        (e)=> setProfession(e.target.value)
+      }
+      />
+      {message}
+      <button onClick={()=> setMessage(`User entered ${name} and ${profession}`)}>Get the name & Profession</button>
+
     </div>
   )
 }
