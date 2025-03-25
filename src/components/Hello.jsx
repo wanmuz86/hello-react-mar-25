@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import Counter from './Counter'
 import ChildComponent from './ChildComponent';
+import TodoList from './TodoList';
 
 // Shortcut for the extension:
 //rafce - > react arrow function component with export
@@ -89,7 +90,8 @@ const Hello = () => {
   // && -> If the value exists, show the message <p>Data passed from child: {parentMessage}</p>
   parentMessage && <p>Data passed from child: {parentMessage}</p>
 }
-
+<hr/>
+<TodoList/>
     </div>
   )
 }
