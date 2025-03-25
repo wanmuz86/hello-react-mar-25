@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import Counter from './Counter'
 import ChildComponent from './ChildComponent';
 import TodoList from './TodoList';
+import ApiComponent from './ApiComponent';
 
 // Shortcut for the extension:
 //rafce - > react arrow function component with export
@@ -92,6 +93,9 @@ const Hello = () => {
 }
 <hr/>
 <TodoList/>
+<hr />
+<h2>API Demo</h2>
+<ApiComponent/>
     </div>
   )
 }
